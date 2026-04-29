@@ -435,6 +435,55 @@
             padding-top: 1rem;
         }
 
+        /* ROLE TAB SYSTEM */
+        .role-tabs {
+            display: flex;
+            gap: 0;
+            border: 1.5px solid var(--cu-border);
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+        .role-tab-btn {
+            flex: 1;
+            padding: 0.85rem 1rem;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--cu-charcoal);
+            background: transparent;
+            border: none;
+            border-radius: 0;
+            cursor: pointer;
+            transition: background-color var(--transition-duration) var(--ease-out),
+                        color var(--transition-duration) var(--ease-out);
+            text-align: center;
+            letter-spacing: 0.01em;
+        }
+        .role-tab-btn:not(:last-child) {
+            border-right: 1.5px solid var(--cu-border);
+        }
+        .role-tab-btn:hover {
+            color: var(--cu-green);
+            background-color: var(--cu-green-light);
+        }
+        .role-tab-btn.is-active {
+            background-color: var(--cu-green);
+            color: white;
+            font-weight: 700;
+        }
+        .role-tab-panel {
+            display: none;
+            opacity: 0;
+            transform: translateY(8px);
+            transition: opacity 220ms var(--ease-out), transform 220ms var(--ease-out);
+        }
+        .role-tab-panel.is-active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         .subtitle {
             font-family: 'DM Sans', sans-serif;
             font-weight: 500;
@@ -620,9 +669,7 @@
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- TEAM -->
+    </section>    <!-- TEAM -->
     <section id="team" class="team">
         <div class="container">
             <div class="team-header animate-on-scroll">
@@ -630,73 +677,79 @@
                 <p>The people behind ChemUnity — and the roles still open.</p>
             </div>
 
-            <div class="team-grid" style="grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));">
-                <!-- Widget 1: Strategic Council -->
-                <div class="team-card animate-on-scroll" style="transition-delay: 0ms;">
-                    <div class="card-header">
-                        <h3 class="card-title">Strategic Council</h3>
-                    </div>
-                    <p class="card-desc" style="margin-bottom: 1.5rem;">The Strategic Council is ChemUnity’s long-term
-                        guidance body. It is not involved in daily execution or event operations. Instead, members focus
-                        on protecting the direction, standards, and sustainability of the organization as it grows.</p>
+            <!-- Tab Buttons -->
+            <div class="role-tabs" role="tablist" aria-label="Role tracks">
+                <button class="role-tab-btn" id="tab-fieldwork" role="tab"
+                    aria-controls="panel-fieldwork" aria-selected="true">
+                    Fieldwork Division
+                </button>
+                <button class="role-tab-btn" id="tab-council" role="tab"
+                    aria-controls="panel-council" aria-selected="false">
+                    Strategic Council
+                </button>
+            </div>
 
-                    <div class="card-section">
-                        <h4>Responsibilities include:</h4>
-                        <ul class="card-list">
-                            <li>Defining long-term vision and direction</li>
-                            <li>Ensuring academic and ethical integrity</li>
-                            <li>Reviewing organizational progress at a high level</li>
-                            <li>Supporting sustainable growth and structure</li>
-                            <li>Participating in key strategic decisions when needed</li>
-                        </ul>
-                    </div>
+            <!-- Panel: Fieldwork Division (default) -->
+            <div class="role-tab-panel team-card" id="panel-fieldwork"
+                 role="tabpanel" aria-labelledby="tab-fieldwork">
+                <div class="card-header">
+                    <h3 class="card-title">Fieldwork Division</h3>
+                </div>
+                <p class="card-desc" style="margin-bottom: 1.5rem;">The Fieldwork Division is the active working structure of ChemUnity. This is where ideas become output — through research, content, events, and collaboration. Members are expected to contribute consistently and work within a structured, goal-driven environment.</p>
 
-                    <div class="card-note">
-                        <strong>This role is NOT for you if you want to:</strong>
-                        Run events, manage tasks, create weekly content, or work in hands-on execution roles.
-                    </div>
-
-                    <div class="card-footer">
-                        <a href="#apply" class="btn btn-outline">Apply for Strategic Council</a>
-                    </div>
+                <div class="card-section">
+                    <h4>Core areas include:</h4>
+                    <ul class="card-list">
+                        <li>Research &amp; Content Development</li>
+                        <li>Outreach &amp; External Collaboration</li>
+                        <li>Events &amp; Webinar Execution</li>
+                        <li>Design, Media &amp; Communication</li>
+                        <li>Community Support &amp; Coordination</li>
+                        <li>Flexible volunteer contributions when needed</li>
+                    </ul>
                 </div>
 
-                <!-- Widget 2: Operations Track -->
-                <div class="team-card animate-on-scroll" style="transition-delay: 50ms;">
-                    <div class="card-header">
-                        <h3 class="card-title">Fieldwork Division</h3>
-                    </div>
-                    <p class="card-desc" style="margin-bottom: 1.5rem;">The Fieldwork Division is the active working
-                        structure of
-                        ChemUnity. This is where ideas become output — through research, content, events, and
-                        collaboration. Members are expected to contribute consistently and work within a structured,
-                        goal-driven environment.</p>
+                <div class="card-section">
+                    <h4>What to expect:</h4>
+                    <ul class="card-list">
+                        <li>Clear weekly responsibilities</li>
+                        <li>Real deliverables and accountability</li>
+                        <li>Team-based execution of projects</li>
+                        <li>A professional, structured workflow</li>
+                    </ul>
+                </div>
 
-                    <div class="card-section">
-                        <h4>Core areas include:</h4>
-                        <ul class="card-list">
-                            <li>Research & Content Development</li>
-                            <li>Outreach & External Collaboration</li>
-                            <li>Events & Webinar Execution</li>
-                            <li>Design, Media & Communication</li>
-                            <li>Community Support & Coordination</li>
-                            <li>Flexible volunteer contributions when needed</li>
-                        </ul>
-                    </div>
+                <div class="card-footer">
+                    <a href="#apply" class="btn btn-outline">Apply for Fieldwork Division</a>
+                </div>
+            </div>
 
-                    <div class="card-section">
-                        <h4>What to expect:</h4>
-                        <ul class="card-list">
-                            <li>Clear weekly responsibilities</li>
-                            <li>Real deliverables and accountability</li>
-                            <li>Team-based execution of projects</li>
-                            <li>A professional, structured workflow</li>
-                        </ul>
-                    </div>
+            <!-- Panel: Strategic Council -->
+            <div class="role-tab-panel team-card" id="panel-council"
+                 role="tabpanel" aria-labelledby="tab-council">
+                <div class="card-header">
+                    <h3 class="card-title">Strategic Council</h3>
+                </div>
+                <p class="card-desc" style="margin-bottom: 1.5rem;">The Strategic Council is ChemUnity's long-term guidance body. It is not involved in daily execution or event operations. Instead, members focus on protecting the direction, standards, and sustainability of the organization as it grows.</p>
 
-                    <div class="card-footer">
-                        <a href="#apply" class="btn btn-outline">Apply for Fieldwork Division</a>
-                    </div>
+                <div class="card-section">
+                    <h4>Responsibilities include:</h4>
+                    <ul class="card-list">
+                        <li>Defining long-term vision and direction</li>
+                        <li>Ensuring academic and ethical integrity</li>
+                        <li>Reviewing organizational progress at a high level</li>
+                        <li>Supporting sustainable growth and structure</li>
+                        <li>Participating in key strategic decisions when needed</li>
+                    </ul>
+                </div>
+
+                <div class="card-note">
+                    <strong>This role is NOT for you if you want to:</strong>
+                    Run events, manage tasks, create weekly content, or work in hands-on execution roles.
+                </div>
+
+                <div class="card-footer">
+                    <a href="#apply" class="btn btn-outline">Apply for Strategic Council</a>
                 </div>
             </div>
         </div>
@@ -739,6 +792,39 @@
                     document.getElementById('team').scrollIntoView({ behavior: 'smooth', block: 'start' });
                 });
             }
+
+            // Role tab system — Fieldwork Division is default
+            const tabs = document.querySelectorAll('.role-tab-btn');
+            const panels = document.querySelectorAll('.role-tab-panel');
+
+            function activateTab(targetId) {
+                tabs.forEach(btn => {
+                    const isTarget = btn.getAttribute('aria-controls') === targetId;
+                    btn.classList.toggle('is-active', isTarget);
+                    btn.setAttribute('aria-selected', isTarget ? 'true' : 'false');
+                });
+                panels.forEach(panel => {
+                    const isTarget = panel.id === targetId;
+                    if (isTarget) {
+                        panel.style.display = 'block';
+                        requestAnimationFrame(() => panel.classList.add('is-active'));
+                    } else {
+                        panel.classList.remove('is-active');
+                        panel.addEventListener('transitionend', () => {
+                            if (!panel.classList.contains('is-active')) panel.style.display = 'none';
+                        }, { once: true });
+                    }
+                });
+            }
+
+            // Set Fieldwork Division as default (even on mobile)
+            activateTab('panel-fieldwork');
+
+            tabs.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    activateTab(btn.getAttribute('aria-controls'));
+                });
+            });
         });
     </script>
 </body>
