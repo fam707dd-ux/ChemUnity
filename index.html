@@ -157,6 +157,7 @@
             position: relative;
             overflow: hidden;
             min-height: 100vh;
+            min-height: 100dvh;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -451,14 +452,39 @@
             }
         }
 
+        .mobile-break {
+            display: none;
+        }
+
+        .hero-highlight {
+            color: var(--cu-green);
+            font-style: italic;
+        }
+
         /* RESPONSIVE */
         @media (max-width: 768px) {
+            .mobile-break {
+                display: block;
+                margin-bottom: 0.2rem;
+            }
+
+            .hero-content .btn {
+                display: block;
+                width: 100%;
+                text-align: center;
+                padding: 1rem;
+                margin-top: 2rem;
+            }
+
             .pillars {
                 grid-template-columns: 1fr;
                 gap: 3rem;
             }
 
-            .hero,
+            .hero {
+                padding: 2.5rem 0;
+            }
+
             .about,
             .team {
                 padding: 5rem 0;
@@ -510,7 +536,7 @@
         <div class="hero-bg"></div>
         <div class="container">
             <div class="hero-content animate-on-scroll">
-                <h1>Chemistry is a conversation. Join the team shaping it.</h1>
+                <h1>Chemistry is a conversation. <br class="mobile-break"><span class="hero-highlight">Join the team shaping it.</span></h1>
                 <p>ChemUnity is a collective of chemistry students, researchers, and professionals who prioritize
                     substance over hype. Through weekly meetings and cross-field discussions, we dissect real problems,
                     share ongoing research, and build a network rooted in genuine scientific curiosity.</p>
