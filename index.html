@@ -447,6 +447,8 @@
         .role-tab-btn {
             flex: 1;
             padding: 0.85rem 1rem;
+            min-height: 3rem;
+            box-sizing: border-box;
             font-family: 'DM Sans', sans-serif;
             font-size: 0.95rem;
             font-weight: 500;
@@ -459,6 +461,11 @@
                         color var(--transition-duration) var(--ease-out);
             text-align: center;
             letter-spacing: 0.01em;
+            /* Lock size — only color/style changes on active, never dimensions */
+            line-height: 1.2;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
         .role-tab-btn:not(:last-child) {
             border-right: 1.5px solid var(--cu-border);
@@ -552,6 +559,8 @@
 
             .hero {
                 padding: 2.5rem 0;
+                /* iOS safe area: ensure content clears the home bar */
+                padding-bottom: max(2.5rem, calc(2.5rem + env(safe-area-inset-bottom)));
             }
 
             .about,
