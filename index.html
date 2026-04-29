@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChemUnity</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,900&family=Playfair+Display:wght@700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --cu-green: oklch(50% 0.13 138);
+            --cu-green-dark: oklch(32% 0.10 138);
+            --cu-green-mid: oklch(62% 0.10 138);
+            --cu-green-light: oklch(92% 0.04 138);
+            --cu-ink: oklch(18% 0.02 145);
+            --cu-charcoal: oklch(38% 0.025 145);
+            --cu-muted: oklch(55% 0.02 145);
+            --cu-surface: oklch(98% 0.008 138);
+            --cu-border: oklch(88% 0.015 138);
+
+            --ease-out: cubic-bezier(0.25, 0.8, 0.25, 1);
+            --transition-duration: 250ms;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            color: var(--cu-ink);
+            background-color: var(--cu-surface);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1,
+        h2,
+        h3,
+        .brand-font {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        button,
+        .btn {
+            cursor: pointer;
+            font-family: inherit;
+            border: none;
+            background: none;
+            transition: all var(--transition-duration) var(--ease-out);
+        }
+
+        button:focus-visible,
+        a:focus-visible {
+            outline: 2px solid var(--cu-green);
+            outline-offset: 2px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+
+        /* NAV */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background-color: var(--cu-surface);
+            border-bottom: 1px solid var(--cu-border);
+            padding: 1rem 0;
+        }
+
+        .nav-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .custom-logo {
+            display: inline-flex;
+            flex-direction: column;
+            font-family: 'DM Sans', Arial, sans-serif;
+            font-weight: 900;
+            line-height: 0.85;
+            text-decoration: none;
+        }
+
+        .logo-chem {
+            color: var(--cu-green);
+            font-size: 28px;
+            letter-spacing: -1px;
+        }
+
+        .logo-unity-group {
+            display: flex;
+            flex-direction: column;
+            margin-left: 56px;
+            margin-top: -2px;
+        }
+
+        .logo-bonds {
+            margin-left: 4px;
+            margin-bottom: 2px;
+        }
+
+        .logo-unity {
+            color: var(--cu-charcoal);
+            font-size: 28px;
+            letter-spacing: -1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--cu-charcoal);
+            font-weight: 500;
+            transition: color var(--transition-duration) var(--ease-out);
+        }
+
+        .nav-links a:hover {
+            color: var(--cu-green);
+        }
+
+        /* HERO */
+        .hero {
+            background-color: var(--cu-surface);
+            padding: 8rem 0;
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.05;
+            pointer-events: none;
+            background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 50 120" fill="none" stroke="black" stroke-width="0.66" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><g><animateTransform attributeName="transform" type="translate" from="0 0" to="50 0" dur="25s" repeatCount="indefinite"/><g><path d="M-1 5 L12.5 15 L25 5 L37.5 15 L51 5"/><path d="M12.5 15 L12.5 25 M37.5 15 L37.5 25"/><path d="M12.5 25 L21.16 30 L21.16 40 L12.5 45 L3.84 40 L3.84 30 Z M37.5 25 L46.16 30 L46.16 40 L37.5 45 L28.84 40 L28.84 30 Z"/><circle cx="12.5" cy="35" r="6.5"/><circle cx="37.5" cy="35" r="6.5"/></g><g transform="translate(-50, 0)"><path d="M-1 5 L12.5 15 L25 5 L37.5 15 L51 5"/><path d="M12.5 15 L12.5 25 M37.5 15 L37.5 25"/><path d="M12.5 25 L21.16 30 L21.16 40 L12.5 45 L3.84 40 L3.84 30 Z M37.5 25 L46.16 30 L46.16 40 L37.5 45 L28.84 40 L28.84 30 Z"/><circle cx="12.5" cy="35" r="6.5"/><circle cx="37.5" cy="35" r="6.5"/></g></g><g><animateTransform attributeName="transform" type="translate" from="0 0" to="-50 0" dur="25s" repeatCount="indefinite"/><g transform="translate(0, 60)"><path d="M-1 5 L12.5 15 L25 5 L37.5 15 L51 5"/><path d="M12.5 15 L12.5 25 M37.5 15 L37.5 25"/><path d="M12.5 25 L21.16 30 L21.16 40 L12.5 45 L3.84 40 L3.84 30 Z M37.5 25 L46.16 30 L46.16 40 L37.5 45 L28.84 40 L28.84 30 Z"/><circle cx="12.5" cy="35" r="6.5"/><circle cx="37.5" cy="35" r="6.5"/></g><g transform="translate(50, 60)"><path d="M-1 5 L12.5 15 L25 5 L37.5 15 L51 5"/><path d="M12.5 15 L12.5 25 M37.5 15 L37.5 25"/><path d="M12.5 25 L21.16 30 L21.16 40 L12.5 45 L3.84 40 L3.84 30 Z M37.5 25 L46.16 30 L46.16 40 L37.5 45 L28.84 40 L28.84 30 Z"/><circle cx="12.5" cy="35" r="6.5"/><circle cx="37.5" cy="35" r="6.5"/></g></g></svg>');
+            background-size: 150px 360px;
+            background-repeat: repeat;
+            -webkit-mask-image: radial-gradient(ellipse at 25% 50%, transparent 15%, black 85%);
+            mask-image: radial-gradient(ellipse at 25% 50%, transparent 15%, black 85%);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .hero-bg {
+                background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 50 120" fill="none" stroke="black" stroke-width="0.66" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><g><path d="M-1 5 L12.5 15 L25 5 L37.5 15 L51 5"/><path d="M12.5 15 L12.5 25 M37.5 15 L37.5 25"/><path d="M12.5 25 L21.16 30 L21.16 40 L12.5 45 L3.84 40 L3.84 30 Z M37.5 25 L46.16 30 L46.16 40 L37.5 45 L28.84 40 L28.84 30 Z"/><circle cx="12.5" cy="35" r="6.5"/><circle cx="37.5" cy="35" r="6.5"/></g><g transform="translate(0, 60)"><path d="M-1 5 L12.5 15 L25 5 L37.5 15 L51 5"/><path d="M12.5 15 L12.5 25 M37.5 15 L37.5 25"/><path d="M12.5 25 L21.16 30 L21.16 40 L12.5 45 L3.84 40 L3.84 30 Z M37.5 25 L46.16 30 L46.16 40 L37.5 45 L28.84 40 L28.84 30 Z"/><circle cx="12.5" cy="35" r="6.5"/><circle cx="37.5" cy="35" r="6.5"/></g></svg>');
+            }
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content {
+            max-width: 640px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.8rem, 6vw, 5rem);
+            color: var(--cu-ink);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: var(--cu-charcoal);
+            margin-bottom: 2.5rem;
+            max-width: 65ch;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            background-color: var(--cu-green);
+            color: white;
+            padding: 0.875rem 2rem;
+            border-radius: 6px;
+            font-weight: 500;
+            font-size: 1rem;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--cu-green-dark);
+        }
+
+        /* ABOUT */
+        .about {
+            padding: 8rem 0;
+            background-color: white;
+        }
+
+        .pillars {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 4rem;
+        }
+
+        .pillar {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .pillar-icon {
+            width: 32px;
+            height: 32px;
+            color: var(--cu-green);
+            margin-bottom: 1.5rem;
+        }
+
+        .pillar hr {
+            border: none;
+            border-top: 1px solid var(--cu-border);
+            margin-bottom: 1.5rem;
+            width: 100%;
+        }
+
+        .pillar h3 {
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 500;
+            font-size: 1.125rem;
+            margin-bottom: 0.75rem;
+            color: var(--cu-ink);
+        }
+
+        .pillar p {
+            color: var(--cu-charcoal);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        /* TEAM */
+        .team {
+            padding: 8rem 0;
+            background-color: var(--cu-surface);
+        }
+
+        .team-header {
+            margin-bottom: 4rem;
+        }
+
+        .team-header h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 1rem;
+        }
+
+        .team-header p {
+            font-size: 1.125rem;
+            color: var(--cu-charcoal);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .team-card {
+            background-color: white;
+            border: 1px solid var(--cu-border);
+            border-radius: 10px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            transition: transform var(--transition-duration) var(--ease-out), box-shadow var(--transition-duration) var(--ease-out);
+        }
+
+        .team-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px oklch(50% 0.13 138 / 0.10);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            gap: 1rem;
+        }
+
+        .card-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            color: var(--cu-ink);
+            font-weight: 700;
+        }
+
+        .badge {
+            background-color: var(--cu-green-light);
+            color: var(--cu-green-dark);
+            font-size: 12px;
+            font-weight: 500;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            white-space: nowrap;
+        }
+
+        .card-desc {
+            color: var(--cu-charcoal);
+            font-size: 0.875rem;
+            margin-bottom: 2rem;
+            flex-grow: 1;
+        }
+
+        .btn-outline {
+            display: block;
+            width: 100%;
+            text-align: center;
+            padding: 0.75rem 1rem;
+            border: 1.5px solid var(--cu-green);
+            color: var(--cu-green);
+            background-color: transparent;
+            border-radius: 6px;
+            font-weight: 500;
+            font-size: 0.875rem;
+        }
+
+        .btn-outline:hover {
+            background-color: var(--cu-green);
+            color: white;
+        }
+
+        .card-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .card-section h4 {
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 500;
+            font-size: 1rem;
+            color: var(--cu-ink);
+            margin-bottom: 0.75rem;
+        }
+
+        .card-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            color: var(--cu-charcoal);
+            font-size: 0.95rem;
+        }
+
+        .card-list li {
+            position: relative;
+            padding-left: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-list li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0.5rem;
+            width: 6px;
+            height: 6px;
+            background-color: var(--cu-green);
+            border-radius: 50%;
+        }
+
+        .card-note {
+            background-color: var(--cu-surface);
+            border: 1px solid var(--cu-border);
+            padding: 1.25rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            color: var(--cu-charcoal);
+            margin-bottom: 1.5rem;
+        }
+
+        .card-note strong {
+            color: var(--cu-ink);
+            font-weight: 500;
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        .card-footer {
+            margin-top: auto;
+            padding-top: 1rem;
+        }
+
+        .subtitle {
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 500;
+            font-size: 0.875rem;
+            color: var(--cu-green);
+            display: block;
+            margin-top: 0.25rem;
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: var(--cu-ink);
+            color: var(--cu-surface);
+            padding: 2.5rem 0;
+        }
+
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.875rem;
+        }
+
+        /* ANIMATIONS */
+        @media (prefers-reduced-motion: no-preference) {
+            .animate-on-scroll {
+                opacity: 0;
+                transform: translateY(20px);
+                transition: opacity var(--transition-duration) var(--ease-out), transform var(--transition-duration) var(--ease-out);
+            }
+
+            .animate-on-scroll.is-visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .pillars {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .hero,
+            .about,
+            .team {
+                padding: 5rem 0;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 0 1.5rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAV -->
+    <nav>
+        <div class="container nav-inner">
+            <a href="#" class="custom-logo" aria-label="ChemUnity">
+                <span class="logo-chem">Chem</span>
+                <span class="logo-unity-group">
+                    <svg class="logo-bonds" width="16" height="8" viewBox="0 0 16 8">
+                        <line x1="2" y1="0" x2="2" y2="8" stroke="var(--cu-green)" stroke-width="1.5"></line>
+                        <line x1="12" y1="0" x2="12" y2="8" stroke="var(--cu-green)" stroke-width="1.5"></line>
+                    </svg>
+                    <span class="logo-unity">Unity</span>
+                </span>
+            </a>
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#team">Team</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="container">
+            <div class="hero-content animate-on-scroll">
+                <h1>Chemistry is a conversation. Join the team shaping it.</h1>
+                <p>ChemUnity is a collective of chemistry students, researchers, and professionals who prioritize
+                    substance over hype. Through weekly meetings and cross-field discussions, we dissect real problems,
+                    share ongoing research, and build a network rooted in genuine scientific curiosity.</p>
+                <a href="#apply" class="btn btn-primary">Apply to Join</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="pillars">
+                <div class="pillar animate-on-scroll">
+                    <svg class="pillar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M10 2v7.31"></path>
+                        <path d="M14 9.3V1.99"></path>
+                        <path d="M8.5 2h7"></path>
+                        <path d="M14 9.3a6.5 6.5 0 1 1-4 0"></path>
+                        <path d="M5.52 16h12.96"></path>
+                    </svg>
+                    <hr>
+                    <h3>Weekly Meetings</h3>
+                    <p>Regular sessions dedicated to discussing papers, methods, and challenges. A consistent space to
+                        keep your knowledge sharp and your reasoning tested.</p>
+                </div>
+                <div class="pillar animate-on-scroll">
+                    <svg class="pillar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="18" cy="5" r="3"></circle>
+                        <circle cx="6" cy="12" r="3"></circle>
+                        <circle cx="18" cy="19" r="3"></circle>
+                        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                        <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                    </svg>
+                    <hr>
+                    <h3>Cross-Field Discussion</h3>
+                    <p>Breaking down the silos between organic, physical, and analytical chemistry. We believe the most
+                        valuable insights emerge at the intersections of disciplines.</p>
+                </div>
+                <div class="pillar animate-on-scroll">
+                    <svg class="pillar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
+                    <hr>
+                    <h3>Real Community</h3>
+                    <p>A network of peers who are genuinely invested in the science, not just building their
+                        credentials. Find collaborators and mentors who care about the work.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TEAM -->
+    <section id="team" class="team">
+        <div class="container">
+            <div class="team-header animate-on-scroll">
+                <h2>The Team</h2>
+                <p>The people behind ChemUnity — and the roles still open.</p>
+            </div>
+
+            <div class="team-grid" style="grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));">
+                <!-- Widget 1: Strategic Council -->
+                <div class="team-card animate-on-scroll" style="transition-delay: 0ms;">
+                    <div class="card-header">
+                        <h3 class="card-title">Strategic Council</h3>
+                    </div>
+                    <p class="card-desc" style="margin-bottom: 1.5rem;">The Strategic Council is ChemUnity’s long-term
+                        guidance body. It is not involved in daily execution or event operations. Instead, members focus
+                        on protecting the direction, standards, and sustainability of the organization as it grows.</p>
+
+                    <div class="card-section">
+                        <h4>Responsibilities include:</h4>
+                        <ul class="card-list">
+                            <li>Defining long-term vision and direction</li>
+                            <li>Ensuring academic and ethical integrity</li>
+                            <li>Reviewing organizational progress at a high level</li>
+                            <li>Supporting sustainable growth and structure</li>
+                            <li>Participating in key strategic decisions when needed</li>
+                        </ul>
+                    </div>
+
+                    <div class="card-note">
+                        <strong>This role is NOT for you if you want to:</strong>
+                        Run events, manage tasks, create weekly content, or work in hands-on execution roles.
+                    </div>
+
+                    <div class="card-footer">
+                        <a href="#apply" class="btn btn-outline">Apply for Strategic Council</a>
+                    </div>
+                </div>
+
+                <!-- Widget 2: Operations Track -->
+                <div class="team-card animate-on-scroll" style="transition-delay: 50ms;">
+                    <div class="card-header">
+                        <h3 class="card-title">Fieldwork Division</h3>
+                    </div>
+                    <p class="card-desc" style="margin-bottom: 1.5rem;">The Fieldwork Division is the active working
+                        structure of
+                        ChemUnity. This is where ideas become output — through research, content, events, and
+                        collaboration. Members are expected to contribute consistently and work within a structured,
+                        goal-driven environment.</p>
+
+                    <div class="card-section">
+                        <h4>Core areas include:</h4>
+                        <ul class="card-list">
+                            <li>Research & Content Development</li>
+                            <li>Outreach & External Collaboration</li>
+                            <li>Events & Webinar Execution</li>
+                            <li>Design, Media & Communication</li>
+                            <li>Community Support & Coordination</li>
+                            <li>Flexible volunteer contributions when needed</li>
+                        </ul>
+                    </div>
+
+                    <div class="card-section">
+                        <h4>What to expect:</h4>
+                        <ul class="card-list">
+                            <li>Clear weekly responsibilities</li>
+                            <li>Real deliverables and accountability</li>
+                            <li>Team-based execution of projects</li>
+                            <li>A professional, structured workflow</li>
+                        </ul>
+                    </div>
+
+                    <div class="card-footer">
+                        <a href="#apply" class="btn btn-outline">Apply for Fieldwork Division</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container footer-inner">
+            <div>&copy; 2025 ChemUnity</div>
+            <div>Built by the team.</div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.animate-on-scroll').forEach((el) => {
+                observer.observe(el);
+            });
+
+            // Smooth scroll for Apply to Join button
+            const applyBtn = document.querySelector('.hero [href="#apply"]');
+            if (applyBtn) {
+                applyBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    document.getElementById('team').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>
